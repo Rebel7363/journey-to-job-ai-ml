@@ -20,6 +20,14 @@ Repository documenting foundational to advanced implementations in Python, Data 
 - `04_linked_lists.py`: Singly and doubly linked lists, O(1) auxiliary space in-place pointer reversal, and Floyd's cycle detection algorithm.
 - `05_trees_and_graphs.py`: Binary Search Tree invariants and in-order traversals, alongside adjacency-list Graph Breadth-First (BFS) and Depth-First Search (DFS).
 
+## 03. Algorithms & Patterns (`03_Algorithms_and_Patterns/`)
+
+- `01_two_pointers_and_sliding_window.py`: Two pointers convergence for pair search, fixed-size sliding window, and fast/slow pointer in-place array deduplication.
+- `02_binary_search_and_divide_conquer.py`: Iterative overflow-safe binary search, lower-bound bisect invariant, and recursive merge sort divide-and-conquer.
+- `03_recursion_and_backtracking.py`: Recursion stack frame tracing, combinatorial power set generation, and N-Queens constraint satisfaction.
+- `04_greedy_algorithms.py`: Optimal interval scheduling by finish time, fractional knapsack value density, and canonical coin change minimization.
+- `05_dynamic_programming_foundations.py`: Top-down memoization vs bottom-up tabulation, 0/1 knapsack 2D matrix DP, and Longest Common Subsequence sequence alignment.
+
 ---
 
 ## Environment
