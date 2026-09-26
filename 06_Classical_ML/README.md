@@ -17,11 +17,25 @@ This module implements foundational supervised and unsupervised classical machin
 1. **Linear Regression:**
    * Hypothesis: $\hat{y} = \mathbf{X}\mathbf{w} + b$
    * Closed-form Analytical Solution (Normal Equation):
-     $$\mathbf{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^TyYour CART scratch implementation is running cleanly and showing solid test results:
+     $$\mathbf{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$
+   * Gradient updates: $\frac{\partial L}{\partial \mathbf{w}} = \frac{2}{N} \mathbf{X}^T (\hat{\mathbf{y}} - \mathbf{y})$
 
-* **Script:** `06_Classical_ML/05_decision_tree.py`[cite: 1]
-* **Dataset Split:** 64 train samples / 16 test samples (80/20 split)[cite: 1]
-* **Root Split:** Feature index `1` at threshold `0.0646`[cite: 1]
-* **Performance:** **93.75%** test accuracy (15/16 correct predictions)[cite: 1]
+2. **Logistic Regression:**
+   * Sigmoid Activation: $\sigma(z) = \frac{1}{1 + e^{-z}}$
+   * Binary Cross-Entropy Loss:
+     $$L(\mathbf{w}) = -\frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]$$
 
-Are you looking to add tree pruning, compare this with scikit-learn's `DecisionTreeClassifier`, or move on to building an ensemble like Random Forest next?
+3. **K-Nearest Neighbors (KNN):**
+   * Euclidean Distance Metric:
+     $$d(\mathbf{x}, \mathbf{x}') = \sqrt{\sum_{j=1}^{d} (x_j - x'_j)^2}$$
+   * Prediction: Mode of $k$ smallest distances.
+
+4. **K-Means Clustering:**
+   * Objective Function (Within-Cluster Sum of Squares / Inertia):
+     $$J = \sum_{k=1}^{K} \sum_{i \in S_k} \Vert{}\mathbf{x}_i - \mathbf{\mu}_k\Vert{}^2$$
+   * Centroid Update: $\mathbf{\mu}_k = \frac{1}{\vert{}S_k\vert{}} \sum_{i \in S_k} \mathbf{x}_i$
+
+5. **Decision Tree (CART):**
+   * Gini Impurity:
+     $$I_G(p) = 1 - \sum_{i=1}^{C} p_i^2$$
+   * Split Evaluation: Maximize impurity decrease across binary splits.
