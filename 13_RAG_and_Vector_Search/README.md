@@ -37,7 +37,7 @@ $$s = \hat{V} \hat{u} \in \mathbb{R}^N$$
 
 The top-$K$ candidates are retrieved via:
 
-$$\text{Top-}K = \operatorname{arg\,top-}K_{i \in \{1, \dots, N\}} (s_i)$$
+$$\text{Top-}K = \arg\max_{i \in \{1, \dots, N\}}^{(K)} (s_i)$$
 
 ---
 
