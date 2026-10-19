@@ -19,10 +19,10 @@ This module covers the core mathematical mechanics and production implementation
 ### 1. Uniform Affine (Asymmetric) Quantization
 Given continuous floating-point values bounded by $[\alpha, \beta]$ and a target integer bit-width $b$ with discrete range $[q_{\min}, q_{\max}]$:
 
-$$S = \frac{\beta - \alpha}{q_{\max} - q_{\min}}, \quad Z = \operatorname{round}\left(-\frac{\alpha}{S}\right) + q_{\min}$$
+$$S = \frac{\beta - \alpha}{q_{\max} - q_{\min}}, \quad Z = \text{round}\left(-\frac{\alpha}{S}\right) + q_{\min}$$
 
 - **Quantization:**
-  $$x_q = \operatorname{clamp}\left(\operatorname{round}\left(\frac{x}{S}\right) + Z, q_{\min}, q_{\max}\right)$$
+  $$x_q = \text{clamp}\left(\text{round}\left(\frac{x}{S}\right) + Z, q_{\min}, q_{\max}\right)$$
 
 - **Dequantization:**
   $$\hat{x} = S \cdot (x_q - Z)$$
@@ -30,16 +30,16 @@ $$S = \frac{\beta - \alpha}{q_{\max} - q_{\min}}, \quad Z = \operatorname{round}
 ### 2. Symmetric Quantization
 Locks the zero-point to zero ($Z = 0$), forcing the dynamic range to be symmetric around the origin:
 
-$$S = \frac{\max(\vert{}x\vert{})}{q_{\max}}, \quad x_q = \operatorname{clamp}\left(\operatorname{round}\left(\frac{x}{S}\right), -q_{\max}, q_{\max}\right)$$
+$$S = \frac{\max(\vert{}x\vert{})}{q_{\max}}, \quad x_q = \text{clamp}\left(\text{round}\left(\frac{x}{S}\right), -q_{\max}, q_{\max}\right)$$
 
 $$\hat{x} = S \cdot x_q$$
 
 ### 3. Block-wise AbsMax Scaling
-Large language models exhibit emergent activation outliers that distort global scale factors. By partitioning a weight tensor $W \in \mathbb{R}^{M \times N}$ into contiguous blocks $\mathbf{b}_i \in \mathbb{R}^B$:
+Large language models exhibit emergent activation outliers that distort global scale factors. By partitioning a weight tensor $W \in \mathbb{R}^{M \times N}$ into contiguous blocks $b_i \in \mathbb{R}^B$:
 
 $$S_i = \frac{\max_{j \in [1, B]} \vert{}b_{i, j}\vert{}}{127}$$
 
-$$b_{q, i, j} = \operatorname{clamp}\left(\operatorname{round}\left(\frac{b_{i, j}}{S_i}\right), -127, 127\right)$$
+$$b_{q, i, j} = \text{clamp}\left(\text{round}\left(\frac{b_{i, j}}{S_i}\right), -127, 127\right)$$
 
 This confines the quantization noise of extreme outliers strictly within their respective blocks, yielding up to $>95\%$ lower mean squared reconstruction error compared to per-tensor scaling.
 
